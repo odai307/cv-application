@@ -1,0 +1,11 @@
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 30px;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+.icon {
+    height: 20px;
+}

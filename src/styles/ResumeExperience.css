@@ -1,0 +1,15 @@
+.experience-section-content {
+    display: grid;
+    grid-template-rows: 1fr 1fr auto;
+    grid-template-columns: 200px 1fr;
+}
+
+.experience-section-item {
+    display: flex;
+    align-items: center;
+}
+
+.responsibilities {
+    grid-column: 2 / -1;
+    margin-top: 10px;
+}
