@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 
-const Sidebar = ({formData, listData, handleFormChange, handleAddListData,  handleRemoveListData}) => {
+const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddListData,  handleRemoveListData}) => {
 
    const [accordionClicked, setAccordionClicked] = useState({
         education: false,
@@ -42,6 +42,29 @@ const Sidebar = ({formData, listData, handleFormChange, handleAddListData,  hand
    }
 
 
+   const handleListDataClick = (section, id) => {
+        const selectedItem = listData[section].find(item => item.id === id);
+
+        if (selectedItem) {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [section]: {...selectedItem, id}
+            }));
+        }
+
+      setAccordionClicked(prevAccordionClick => ({
+        ...prevAccordionClick,
+        [section]: true
+      }));
+
+      setAddOrCancelBtnClicked(prevAddOrCancelBtnClick => ({
+        ...prevAddOrCancelBtnClick,
+        [section]: true
+      }))
+
+   }
+
+
 
     return (
         <div className="sidebar">
@@ -59,6 +82,7 @@ const Sidebar = ({formData, listData, handleFormChange, handleAddListData,  hand
                 handleFormChange={handleFormChange}
                 handleSubmit={handleSubmit}
                 handleRemoveListData={handleRemoveListData}
+                handleListDataClick={handleListDataClick}
             />
             <Experience 
             

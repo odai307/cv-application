@@ -2,9 +2,9 @@ import School from "./School";
 const CVEducation = ({listData}) => {
   return (
     <div className="cv-education">
-      <div className={`${""} cv-section-header`}>
+      {listData.length > 0 && <div className={`${""} cv-section-header`}>
         <p>Education</p>
-      </div>
+      </div>}
       <div className="section-content">
        <>
         {listData.map((school) => (

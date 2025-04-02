@@ -67,10 +67,10 @@ const App = () => {
   }
 
 
-  const handleRemoveListData = (section, id) => {
+  const handleRemoveListData = (section) => {
     setListData(prevListData => ({
       ...prevListData,
-      [section]: prevListData[section].filter(item => item.id !== id)
+      [section]: prevListData[section].filter(item => item.id !== formData[section].id)
     }));
 
     setFormData(prevFormData => ({
@@ -86,6 +86,7 @@ const App = () => {
     <div className="app">
       <Sidebar 
         formData={formData}
+        setFormData={setFormData}
         listData={listData}
         handleFormChange={handleFormChange}
         handleAddListData={handleAddListData}

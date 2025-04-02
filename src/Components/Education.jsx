@@ -3,7 +3,7 @@ import ItemList from "./ItemList";
 import SchoolIcon from "../assets/icons/school.svg";
 
 
-const Education = ({formData, listData,  handleRemoveListData, handleFormChange, accordionClicked, addOrCancelBtnClicked, handleAccordionClick, handleAddOrCancelBtnClick, handleSubmit}) => {
+const Education = ({formData, listData,  handleRemoveListData, handleFormChange, accordionClicked, addOrCancelBtnClicked, handleAccordionClick, handleAddOrCancelBtnClick, handleSubmit, handleListDataClick}) => {
 
   return (
     <div className="sidebar-section education">
@@ -19,6 +19,7 @@ const Education = ({formData, listData,  handleRemoveListData, handleFormChange,
                     <ItemList key={item.id}
                         item={item.schoolName}
                         accordionClicked={accordionClicked.education}
+                        handleListDataClick={() => handleListDataClick("education", item.id)}
                     />
                     
                 ))}
@@ -72,9 +73,10 @@ const Education = ({formData, listData,  handleRemoveListData, handleFormChange,
 
                 <div className="btns">
                     <button className="btn delete-btn" type="button"
-                         onClick={(e) => {
-                                e.preventDefault();
-                               }}>
+                         onClick={() => {handleRemoveListData("education")
+                            handleAddOrCancelBtnClick("education")
+                         }
+                         }>
                             Delete
                     </button>
                     <button className="btn cancel-btn"
