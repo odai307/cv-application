@@ -3,11 +3,11 @@ import CVPersonalDetails from "./CVPersonalDetails";
 import CVEducation from "./CVEducation";
 import CVExperience from "./CVExperience";
 
- const CV = ({listData, personalDetails}) => {
+ const CV = ({listData, formData}) => {
     return (
-        <div className="main-cv">
+        <div className="main-cv" id="main-cv">
             <CVPersonalDetails 
-                personalDetails={personalDetails}
+                formData={formData}
             />
             <CVEducation 
                 listData={listData.education}

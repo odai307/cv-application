@@ -2,6 +2,7 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar.jsx";
 import CV from "./Components/CV.jsx";
 import { useEffect, useState } from "react";
+import html2pdf  from "html2pdf.js";
 
 
 const App = () => {
@@ -62,7 +63,8 @@ const App = () => {
       setPersonalDetails((prevPersonalDetails) => ({
         ...prevPersonalDetails,
         [name]: value
-      }))
+      }));
+  
     }
     setFormData((prevFormData) => ({ 
       ...prevFormData,
@@ -123,6 +125,55 @@ const App = () => {
     }));
   }
 
+  const clearAll = () => {
+   setFormData({
+    personalDetails: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      address: ""
+    },
+
+    education: {
+      schoolName: "",
+      fieldOfStudy: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+    },
+
+    experience: {
+      companyName: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      jobDescription: ""
+    }
+   });
+
+   setListData({
+    education: [],
+    experience: []
+   });
+
+  }
+
+  const downloadCVAsPdf = () => {
+    const contentCv = document.querySelector("#main-cv");
+    const options = {
+      margin: 1,
+      file_name: "my_cv.pdf",
+      image: {type: "jpeg", quality: 0.98},
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    };
+    html2pdf()
+      .from(contentCv)
+      .set(options)
+      .save();
+  }
+
   return (
     <div className="app">
       <Sidebar 
@@ -132,10 +183,12 @@ const App = () => {
         handleFormChange={handleFormChange}
         handleAddListData={handleAddListData}
         handleRemoveListData={handleRemoveListData}
+        clearAll={clearAll}
+        downloadCVAsPdf={downloadCVAsPdf}
       />
       <CV 
         listData={listData}
-        personalDetails={personalDetails}
+        formData={formData}
       />
     </div>
   )

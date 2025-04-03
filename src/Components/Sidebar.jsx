@@ -4,10 +4,11 @@ import PersonalDetails from "./PersonalDetails";
 import Education from "./Education";
 import Experience from "./Experience";
 import { useState } from "react";
+import DeleteIcon from "../assets/icons/delete.svg";
 
 
 
-const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddListData,  handleRemoveListData}) => {
+const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddListData,  handleRemoveListData, clearAll, downloadCVAsPdf}) => {
 
    const [accordionClicked, setAccordionClicked] = useState({
         education: false,
@@ -66,6 +67,10 @@ const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddLi
 
     return (
         <div className="sidebar">
+            <div className="clear-resume" onClick={clearAll}>
+                <img src={DeleteIcon} alt=""  className="icon"/>
+                <p>Clear Resume</p>
+            </div>
             <PersonalDetails
                 formData={formData}
                 handleFormChange={handleFormChange}
@@ -94,6 +99,12 @@ const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddLi
                 handleRemoveListData={handleRemoveListData}
                 handleListDataClick={handleListDataClick}
             />
+            <div className="download">
+                <button className="download-btn"
+                    onClick={downloadCVAsPdf}>
+                        Download Cv
+                </button>
+            </div>
         </div>
     )
 }
