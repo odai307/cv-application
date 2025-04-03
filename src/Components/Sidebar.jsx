@@ -64,8 +64,6 @@ const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddLi
 
    }
 
-
-
     return (
         <div className="sidebar">
             <PersonalDetails
@@ -85,7 +83,16 @@ const Sidebar = ({formData, setFormData, listData, handleFormChange, handleAddLi
                 handleListDataClick={handleListDataClick}
             />
             <Experience 
-            
+                formData={formData}
+                listData={listData}
+                accordionClicked={accordionClicked}
+                handleAccordionClick={handleAccordionClick}
+                addOrCancelBtnClicked={addOrCancelBtnClicked}
+                handleAddOrCancelBtnClick={handleAddOrCancelBtnClick}
+                handleFormChange={handleFormChange}
+                handleSubmit={handleSubmit}
+                handleRemoveListData={handleRemoveListData}
+                handleListDataClick={handleListDataClick}
             />
         </div>
     )
